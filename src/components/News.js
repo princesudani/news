@@ -44,8 +44,7 @@ const News = (props) => {
     setPage(page + 1);
     let data = await fetch(url);
     let parsedData = await data.json();
-    // setArticles(articles.concat(parsedData.articles));
-    setArticles(prevArticles => prevArticles.concat(parsedData.articles));
+    setArticles(articles.concat(parsedData.articles));
     setTotalResults(parsedData.totalResults);
   };
 
@@ -58,6 +57,7 @@ const News = (props) => {
         MyRecentNews - Top {capitalizeFirstLetter(props.category)} Headlines
       </h1>
       {loading && <Spinner />}
+      {articles && (
       <InfiniteScroll
         dataLength={articles.length}
         next={fetchMoreData}
@@ -84,6 +84,7 @@ const News = (props) => {
           </div>
         </div>
       </InfiniteScroll>
+      )}
     </>
   );
 };
