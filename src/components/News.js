@@ -57,6 +57,7 @@ const News = (props) => {
         MyRecentNews - Top {capitalizeFirstLetter(props.category)} Headlines
       </h1>
       {loading && <Spinner />}
+ {articles && (
       <InfiniteScroll
         dataLength={articles.length}
         next={fetchMoreData}
@@ -83,6 +84,7 @@ const News = (props) => {
           </div>
         </div>
       </InfiniteScroll>
+            )}
     </>
   );
 };
