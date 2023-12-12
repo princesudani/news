@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import NewsItem from "./NewsItem";
-import Spinner from "./Spinner";
+// import Spinner from "./Spinner";
 import PropTypes from "prop-types";
-import InfiniteScroll from "react-infinite-scroll-component";
+// import InfiniteScroll from "react-infinite-scroll-component";
 
 const News = (props) => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
 
@@ -18,14 +18,14 @@ const News = (props) => {
   const updateNews = async () => {
     props.setProgress(10);
     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=fa211bf1328e44e4b37220385bf6a559&page=${page}&pageSize=${props.pageSize}`;
-    setLoading(true);
+    // setLoading(true);
     let data = await fetch(url);
     props.setProgress(30);
     let parsedData = await data.json();
     props.setProgress(70);
     setArticles(parsedData.articles);
     setTotalResults(parsedData.totalResults);
-    setLoading(false);
+    // setLoading(false);
     props.setProgress(100);
   };
 
@@ -56,13 +56,13 @@ const News = (props) => {
       >
         MyRecentNews - Top {capitalizeFirstLetter(props.category)} Headlines
       </h1>
-      {loading && <Spinner />}
-      <InfiniteScroll
-        dataLength={articles.length}
-        next={fetchMoreData}
-        hasMore={articles.length !== totalResults}
-        loader={<Spinner />}
-      >
+      // {loading && <Spinner />}
+      // <InfiniteScroll
+      //   dataLength={articles.length}
+      //   next={fetchMoreData}
+      //   hasMore={articles.length !== totalResults}
+      //   loader={<Spinner />}
+      // >
         <div className="container">
           <div className="row">
             {articles.map((element) => {
@@ -82,7 +82,7 @@ const News = (props) => {
             })}
           </div>
         </div>
-      </InfiniteScroll>
+      // </InfiniteScroll>
     </>
   );
 };
